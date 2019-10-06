@@ -12,11 +12,13 @@ import frc.robot.autos.AutoCompilation;
 import frc.robot.autos.RealAutos;
 import frc.robot.controls.DriverControls;
 import frc.robot.controls.OperatorControls;
+import frc.robot.subsystems.Arduino;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.HatchCollector;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LineFollower;
 import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj.DriverStation;
 
 import java.lang.Math;
 
@@ -57,6 +59,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
+        Arduino.setAllianceColor(DriverStation.getInstance().getAlliance());
+
         driverJoy = new Joystick(0);
         operatorJoy = new Joystick(1);
         CameraServer.getInstance().startAutomaticCapture();
@@ -90,11 +94,11 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
 
-        driver.controls();
-        operator.controls();        
+       // driver.controls();
+       // operator.controls();        
         
-        Drivetrain.drive(driverJoy.getRawAxis(1) * 1, driverJoy.getRawAxis(2) * 1, driverJoy.getRawAxis(3) * 1);
-        spinningIntake.spinIntake(driverJoy.getRawButton(1), driverJoy.getRawButton(4), driverJoy.getRawButton(2));
+        Drivetrain.drive(driverJoy.getRawAxis(1) * 1, driverJoy.getRawAxis(2) * .75, driverJoy.getRawAxis(3) * .75);
+        spinningIntake.spinIntake(operatorJoy.getRawButton(2), operatorJoy.getRawButton(4));
         shootNow.operatorShoot(operatorJoy.getRawAxis(1), operatorJoy.getRawAxis(5));
         maticsMatics.openClaw(operatorJoy.getRawAxis(2));
         maticsMatics.moveToSafety(operatorJoy.getRawButton(3), operatorJoy.getRawButton(1));

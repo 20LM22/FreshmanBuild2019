@@ -23,12 +23,10 @@ public class Intake {
         intake.set(ControlMode.PercentOutput, 0);
     }
     
-    public void spinIntake(boolean forward, boolean reverse, boolean stop) {
+    public void spinIntake(boolean forward, boolean stop) {
         if (forward == true) { // a = 1, b = 2, x = 3, y =4
             intake.set(ControlMode.PercentOutput, -1);
-        } else if (reverse == true) {
-            intake.set(ControlMode.PercentOutput, 1);
-        } else if (stop == true) {
+        }  else if (stop == true) {
             intake.set(ControlMode.PercentOutput, 0);
         }
     }

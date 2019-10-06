@@ -19,11 +19,11 @@ public class AutoCompilation {
             Robot.NAVXgyro.reset();
         }
         if (Timer.getFPGATimestamp() - startTime <= 5) {
-            Robot.spinningIntake.spinIntake(true, false, false);
+       //     Robot.spinningIntake.spinIntake(true, false, false);
             return false;
         }
         else {
-            Robot.spinningIntake.spinIntake(false, false, false);
+      //      Robot.spinningIntake.spinIntake(false, false, false);
             return true;
         }
     }
